@@ -11,7 +11,7 @@ const API_BASE_URL = typeof window !== 'undefined'
 // 创建 axios 实例
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000,
+  timeout: 60000,  // 增加到 60 秒
   headers: {
     'Content-Type': 'application/json',
   },
