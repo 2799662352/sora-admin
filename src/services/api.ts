@@ -3,7 +3,10 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+// 动态获取 API 地址：优先使用环境变量，然后使用当前访问的主机名
+const API_BASE_URL = typeof window !== 'undefined' 
+  ? `http://${window.location.hostname}:3001` 
+  : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001');
 
 // 创建 axios 实例
 export const apiClient = axios.create({
