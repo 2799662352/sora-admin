@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Table, Button, Tag, Space, Modal, Form, Select, InputNumber, message, Descriptions } from 'antd';
+import { Table, Button, Tag, Space, Modal, Form, Select, InputNumber, Input, message, Descriptions } from 'antd';
 import { PlusOutlined, EyeOutlined, StopOutlined } from '@ant-design/icons';
 import { getLicenses, generateLicense, revokeLicense } from '@/services/api';
 
