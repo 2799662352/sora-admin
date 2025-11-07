@@ -31,9 +31,9 @@ export const login = async (username: string, password: string): Promise<LoginRe
     
     // 适配后端响应格式
     const result = {
-      success: response.success || true,
-      data: response.data || response,
-      message: response.message,
+      success: (response as any).success || true,
+      data: (response as any).data || response,
+      message: (response as any).message,
     };
     
     console.log('[Auth Service] 格式化后:', result);
