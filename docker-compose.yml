@@ -1,0 +1,27 @@
+# Docker Compose 配置 - Next.js 管理后台
+version: '3.8'
+
+services:
+  admin:
+    image: sora-admin-nextjs:latest
+    # 或使用 GHCR 镜像
+    # image: ghcr.io/2799662352/sora-admin-nextjs:latest
+    container_name: sora-admin
+    restart: always
+    environment:
+      - NEXT_PUBLIC_API_URL=https://api.zuo2799662352.xyz
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    networks:
+      - sora-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+networks:
+  sora-network:
+    external: true
+
