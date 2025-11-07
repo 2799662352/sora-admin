@@ -37,12 +37,12 @@ export default function DashboardPage() {
         const usersRes = await getUsers(1, 5);
         console.log('[Dashboard] 用户数据响应:', usersRes);
         
-        if (usersRes.success && usersRes.data) {
+        if (usersRes && (usersRes as any).success && (usersRes as any).data) {
           setStats(prev => ({
             ...prev,
-            totalUsers: usersRes.data?.total || 0,
+            totalUsers: (usersRes as any).data?.total || 0,
           }));
-          setRecentUsers(usersRes.data?.items || []);
+          setRecentUsers((usersRes as any).data?.items || []);
         }
       } catch (error) {
         console.warn('[Dashboard] 用户数据加载失败:', error);
@@ -55,11 +55,11 @@ export default function DashboardPage() {
         const licensesRes = await getLicenses(1, 10);
         console.log('[Dashboard] 许可证数据响应:', licensesRes);
         
-        if (licensesRes.success && licensesRes.data) {
+        if (licensesRes && (licensesRes as any).success && (licensesRes as any).data) {
           setStats(prev => ({
             ...prev,
-            totalLicenses: licensesRes.data?.total || 0,
-            activeLicenses: licensesRes.data?.items?.filter((l: any) => l.isActive).length || 0,
+            totalLicenses: (licensesRes as any).data?.total || 0,
+            activeLicenses: (licensesRes as any).data?.items?.filter((l: any) => l.isActive).length || 0,
           }));
         }
       } catch (error) {
